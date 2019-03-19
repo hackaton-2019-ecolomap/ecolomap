@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 import Provider from './Provider';
 import Navbar from './components/Navbar';
-import Logo from './components/Logo';
-import Search from './components/Search';
-import Map from './components/Map';
+import Home from './Home';
+import Result from './Result';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Raleway');
@@ -20,24 +20,15 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const StyledHero = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 8rem 0;
-`;
-
-const App = () => (
-  <Provider>
-    <GlobalStyles />
-    <Navbar />
-    <StyledHero>
-      <Logo />
-      <Search />
-    </StyledHero>
-    <Map />
-  </Provider>
+const AppRouter = () => (
+  <Router>
+    <Provider>
+      <GlobalStyles />
+      <Navbar />
+      <Route path="/" exact component={Home} />
+      <Route path="/result" component={Result} />
+    </Provider>
+  </Router>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<AppRouter />, document.getElementById('root'));

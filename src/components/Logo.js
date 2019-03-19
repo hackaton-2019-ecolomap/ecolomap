@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledHero = styled.div`
-  padding: 4rem 0;
+  padding: 3rem 0;
 `;
 
 const StyledTitle = styled.h1`

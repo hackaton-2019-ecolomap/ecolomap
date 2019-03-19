@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Provider from './Provider';
 import Navbar from './components/Navbar';
-import Home from './Home';
-import Result from './Result';
+import Home from './pages/Home';
+import Result from './pages/Result';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Raleway');

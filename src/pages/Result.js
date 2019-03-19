@@ -1,25 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from './components/Logo';
-import Search from './components/Search';
-import Map from './components/Map';
+import Search from '../components/Search';
 
 const StyledHero = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 8rem 0;
+  padding: 2rem 0;
 `;
 
-const Home = () => (
+const Result = () => (
   <>
     <StyledHero>
-      <Logo />
       <Search />
     </StyledHero>
-    <Map />
   </>
 );
 
-export default Home;
+export default Result;

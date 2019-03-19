@@ -3,47 +3,57 @@ import { Formik } from 'formik';
 import styled from 'styled-components';
 import { withContext } from 'Provider';
 
-const StyledForm = styled.form`
-  display: flex;
-  justify-content: center;
-  padding-bottom: 8rem;
-  padding-top: 8rem;
+const StyledInput = styled.input`
+  width: 360px;
+  background-color: #ededed;
+  box-shadow: none;
+  border: none;
 `;
 
-const Search = ({ setCountryName }) => (
-  <Formik
-    initialValues={{ terms: '' }}
-    onSubmit={(values, { setSubmitting }) => {
-      const { terms } = values;
-      setCountryName(terms);
-      setSubmitting(false);
-    }}
-  >
-    {({
-      values,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      isSubmitting,
-    }) => (
-      <StyledForm onSubmit={handleSubmit}>
-        <div className="form-group has-icon-left">
-          <input
-            type="terms"
-            name="terms"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.terms}
-            className="form-input"
-          />
-          <i className="form-icon icon icon-arrow-right"></i>
-        </div>
-        <button type="submit" className="btn" disabled={isSubmitting}>
-          Rechercher
-        </button>
-      </StyledForm>
-    )}
-  </Formik>
-);
+const StyledIconWrapper = styled.span`
+  pointer-events: initial !important;
+  cursor: pointer;
+`;
+
+const StyledIcon = styled.i`
+  color: #3C3C3B;
+`;
+
+const Search = ({ setCountryName }) => {
+  const onSubmit = values => {
+    const { terms } = values;
+    setCountryName(terms);
+  };
+  return (
+    <Formik
+      initialValues={{ terms: '' }}
+      onSubmit={onSubmit}
+    >
+      {({
+        values,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+      }) => (
+        <form onSubmit={handleSubmit}>
+          <div className="control has-icons-right">
+            <StyledInput
+              type="terms"
+              name="terms"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.terms}
+              className="input is-rounded"
+              placeholder="Essayez France, Amérique du sud ou Asie"
+            />
+            <StyledIconWrapper className="icon is-small is-right" onClick={onSubmit}>
+              <StyledIcon className="fas fa-search"></StyledIcon>
+            </StyledIconWrapper>
+          </div>
+        </form>
+      )}
+    </Formik>
+  );
+}
 
 export default withContext('setCountryName')(Search);

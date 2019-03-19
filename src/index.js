@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled, { createGlobalStyle } from "styled-components";
-import Provider from 'Provider';
-import Navbar from 'components/Navbar';
-import Logo from 'components/Logo';
-import Search from 'components/Search';
-import Map from 'components/Map';
+import Provider from './Provider';
+import Navbar from './components/Navbar';
+import Logo from './components/Logo';
+import Search from './components/Search';
+import Map from './components/Map';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Raleway');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import styled from 'styled-components';
-import { withContext } from 'Provider';
+import { withContext } from '../Provider';
 
 const StyledInput = styled.input`
   width: 360px;
@@ -22,6 +22,7 @@ const StyledIcon = styled.i`
 const Search = ({ setCountryName }) => {
   const onSubmit = values => {
     const { terms } = values;
+    console.log(values);
     setCountryName(terms);
   };
   return (
@@ -31,9 +32,9 @@ const Search = ({ setCountryName }) => {
     >
       {({
         values,
-        handleChange,
         handleBlur,
         handleSubmit,
+        handleChange,
       }) => (
         <form onSubmit={handleSubmit}>
           <div className="control has-icons-right">

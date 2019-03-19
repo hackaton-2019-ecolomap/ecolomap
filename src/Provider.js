@@ -1,5 +1,5 @@
 import React from 'react';
-import withContextFactory from 'lib/withContextFactory';
+import withContextFactory from './lib/withContextFactory';
 
 const Context = React.createContext({});
 

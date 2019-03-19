@@ -5,8 +5,8 @@ import {
   Geographies,
   Geography,
 } from 'react-simple-maps';
-import topology from 'static/world-50m';
-import { withContext } from 'Provider';
+import topology from '../static/world-50m';
+import { withContext } from '../Provider';
 
 const Map = ({ setCountryName }) => {
   const onCountryClick = (geography) => {

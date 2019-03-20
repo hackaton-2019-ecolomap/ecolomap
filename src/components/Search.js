@@ -7,8 +7,14 @@ import { withContext } from '../Provider';
 const StyledInput = styled.input`
   width: 22.1rem;
   background-color: #ededed;
-  box-shadow: none;
-  border: none;
+  box-shadow: none !important;
+  border: ${props => (props.state ? '1px solid red' : 'none')} !important;
+  &:hover,
+  &:active,
+  &:focus {
+    border: ${props =>
+      props.state ? '1px solid red' : '1px solid #9D9D9C'} !important;
+  }
 `;
 
 const StyledIconWrapper = styled.span`
@@ -22,11 +28,13 @@ const StyledIcon = styled.i`
 
 class Search extends React.Component {
   state = {
-    value: ''
+    value: '',
+    error: false
   };
 
   handleChange = event => {
-    this.setState({ value: event.target.value });
+    const { value } = event.target;
+    this.setState({ value, error: false });
   };
 
   handleSelect = value => {
@@ -40,12 +48,14 @@ class Search extends React.Component {
     if (landsList.includes(value)) {
       setLand(value);
       history.push('/biomes');
+    } else if (value) {
+      this.setState({ error: true });
     }
   };
 
   render = () => {
     const { landsList } = this.props;
-    const { value } = this.state;
+    const { value, error } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="control has-icons-right">
@@ -72,6 +82,7 @@ class Search extends React.Component {
                 {...props}
                 className="input is-rounded"
                 placeholder="Essayez France, Amérique du sud ou Asie"
+                state={error}
               />
             )}
           />

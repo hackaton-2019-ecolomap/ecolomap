@@ -6,7 +6,6 @@ const StyledFooter = styled.footer`
   position: absolute;
   width: 100%;
   bottom: 0;
-  left: 0;
 `;
 
 const StyledBg = styled.img`

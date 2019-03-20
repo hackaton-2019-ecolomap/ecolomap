@@ -1,6 +1,6 @@
 import React from 'react';
-import Biome1 from '../static/biome/pb-actuel-1.svg';
-import Biome2 from '../static/biome/pb-actuel-2.svg';
+import Biome1 from '../static/svg/pb-actuel-1.svg';
+import Biome2 from '../static/svg/pb-actuel-2.svg';
 
 const Biomes = () => (
   <>

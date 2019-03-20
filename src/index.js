@@ -6,6 +6,7 @@ import Provider from './Provider';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Biomes from './pages/Biomes';
+import Footer from './components/Footer';
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Raleway');
@@ -27,6 +28,7 @@ const AppRouter = () => (
       <Navbar />
       <Route path="/" exact component={Home} />
       <Route path="/biomes" component={Biomes} />
+      <Footer />
     </Provider>
   </Router>
 );

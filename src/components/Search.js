@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
 
 const StyledInput = styled.input`
-  width: 360px;
+  width: 22.1rem;
   background-color: #ededed;
   box-shadow: none;
   border: none;

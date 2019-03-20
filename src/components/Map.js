@@ -5,6 +5,7 @@ import {
   Geographies,
   Geography
 } from 'react-simple-maps';
+import { isMobile } from 'react-device-detect';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
 import topology from '../static/topo-continent';
@@ -21,7 +22,7 @@ const Map = ({ setLand, landsList, history }) => {
   return (
     <ComposableMap
       projectionConfig={{ scale: 205 }}
-      width={980}
+      width={isMobile ? 1000 : 2600}
       height={551}
       style={{
         width: '100%',
@@ -37,27 +38,21 @@ const Map = ({ setLand, landsList, history }) => {
                 key={id}
                 geography={geography}
                 projection={projection}
+                onClick={onCountryClick}
                 style={{
                   default: {
                     fill: '#ECEFF1',
-                    stroke: '#607D8B',
-                    strokeWidth: 0.75,
                     outline: 'none'
                   },
                   hover: {
                     fill: '#CFD8DC',
-                    stroke: '#607D8B',
-                    strokeWidth: 0.75,
                     outline: 'none'
                   },
                   pressed: {
-                    fill: '#FF5722',
-                    stroke: '#607D8B',
-                    strokeWidth: 0.75,
+                    fill: '#00A99D',
                     outline: 'none'
                   }
                 }}
-                onClick={onCountryClick}
               />
             ))
           }

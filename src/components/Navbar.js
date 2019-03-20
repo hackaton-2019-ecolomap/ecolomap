@@ -6,17 +6,18 @@ const StyledHeader = styled.nav`
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 40px;
+  height: 3rem;
 `;
 
 const StyledHelp = styled.a`
-  font-family: 'Raleway';
+  font-family: 'Comfortaa';
+  font-size: 1.5rem;
   margin: 0 1rem;
 `;
 
 const Navbar = () => (
   <StyledHeader>
-    <StyledHelp>Aide</StyledHelp>
+    <StyledHelp>?</StyledHelp>
   </StyledHeader>
 );
 

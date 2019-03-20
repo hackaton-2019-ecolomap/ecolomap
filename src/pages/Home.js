@@ -9,7 +9,8 @@ const StyledHero = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 8rem 0;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
 `;
 
 const Home = () => (

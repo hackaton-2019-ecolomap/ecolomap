@@ -1,16 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import Logo from '../static/svg/logo.svg';
 
-const StyledHero = styled.div`
-  padding: 3rem 0;
+const StyledLogo = styled(Logo)`
+  width: 20rem;
+  margin: 0 auto;
 `;
 
-const StyledTitle = styled.h1`
-  font-family: 'Comfortaa';
-`;
-
-export default () => (
-  <StyledHero>
-    <StyledTitle>Ecolomap</StyledTitle>
-  </StyledHero>
-);
+export default () => <StyledLogo />;

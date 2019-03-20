@@ -11,11 +11,17 @@ export default class Provider extends React.Component {
   state = {
     land: '',
     landsList: Object.values(landsList),
-    setLand: this.setLand.bind(this)
+    pose: 'start',
+    setLand: this.setLand.bind(this),
+    setPose: this.setPose.bind(this)
   };
 
   setLand(land) {
     this.setState({ land });
+  }
+
+  setPose(pose) {
+    this.setState({ pose });
   }
 
   render = () => {

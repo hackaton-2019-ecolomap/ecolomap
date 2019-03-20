@@ -9,14 +9,16 @@ import { isMobile } from 'react-device-detect';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
 import topology from '../static/topo-continent';
+import sleep from '../lib/utils';
 
-const Map = ({ setLand, landsList, history }) => {
+const Map = ({ setLand, landsList, setPose, history }) => {
   const onCountryClick = geography => {
     const { continent } = geography.properties;
     setLand(continent);
     if (landsList.includes(continent)) {
+      setPose('end');
       setLand(continent);
-      history.push('/biomes');
+      sleep(500).then(() => history.push('/biomes'));
     }
   };
   return (
@@ -62,4 +64,4 @@ const Map = ({ setLand, landsList, history }) => {
   );
 };
 
-export default withContext('setLand', 'landsList')(withRouter(Map));
+export default withContext('setLand', 'landsList', 'setPose')(withRouter(Map));

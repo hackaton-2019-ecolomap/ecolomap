@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import posed from 'react-pose';
 import Logo from '../components/Logo';
 import Search from '../components/Search';
 import Map from '../components/Map';
+import Footer from '../components/Footer';
+import { withContext } from '../Provider';
+import { bottomToTop, invisible } from '../lib/animation';
 
 const StyledHero = styled.div`
   display: flex;
@@ -13,14 +17,36 @@ const StyledHero = styled.div`
   padding-bottom: 5rem;
 `;
 
-const Home = () => (
-  <>
-    <StyledHero>
-      <Logo />
-      <Search />
-    </StyledHero>
-    <Map />
-  </>
-);
+const PosedInvisibleWrapper = posed.div(invisible);
+const PosedSearchWrapper = posed.div(bottomToTop);
 
-export default Home;
+class Home extends React.Component {
+  componentDidMount() {
+    const { setPose } = this.props;
+    setPose('start');
+  }
+
+  render = () => {
+    const { pose } = this.props;
+    return (
+      <>
+        <StyledHero>
+          <PosedInvisibleWrapper pose={pose}>
+            <Logo />
+          </PosedInvisibleWrapper>
+          <PosedSearchWrapper pose={pose}>
+            <Search />
+          </PosedSearchWrapper>
+        </StyledHero>
+        <PosedInvisibleWrapper pose={pose}>
+          <Map />
+        </PosedInvisibleWrapper>
+        <PosedInvisibleWrapper pose={pose}>
+          <Footer />
+        </PosedInvisibleWrapper>
+      </>
+    );
+  };
+}
+
+export default withContext('pose', 'setPose')(Home);

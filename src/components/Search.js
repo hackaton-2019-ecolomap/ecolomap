@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import Autocomplete from 'react-autocomplete';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
+import sleep from '../lib/utils';
 
 const StyledInput = styled.input`
-  width: 22.1rem;
+  width: 22rem;
   background-color: #ededed;
   box-shadow: none !important;
   border: ${props => (props.state ? '1px solid red' : 'none')} !important;
-  &:hover,
-  &:active,
-  &:focus {
+  &:hover {
     border: ${props =>
       props.state ? '1px solid red' : '1px solid #9D9D9C'} !important;
   }
@@ -43,11 +42,12 @@ class Search extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { setLand, landsList, history } = this.props;
+    const { setLand, landsList, setPose, history, location } = this.props;
     const { value } = this.state;
     if (landsList.includes(value)) {
+      if (location.pathname === '/') setPose('end');
       setLand(value);
-      history.push('/biomes');
+      sleep(500).then(() => history.push('/biomes'));
     } else if (value) {
       this.setState({ error: true });
     }
@@ -81,7 +81,7 @@ class Search extends React.Component {
               <StyledInput
                 {...props}
                 className="input is-rounded"
-                placeholder="Essayez France, Amérique du sud ou Asie"
+                placeholder="Essayez France, Angleterre ou Chine"
                 state={error}
               />
             )}
@@ -98,4 +98,6 @@ class Search extends React.Component {
   };
 }
 
-export default withContext('setLand', 'landsList')(withRouter(Search));
+export default withContext('setLand', 'landsList', 'setPose')(
+  withRouter(Search)
+);

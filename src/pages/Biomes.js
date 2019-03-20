@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Search from '../components/Search';
+import Biome from '../components/Biome';
 
 const StyledHero = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const Biomes = () => (
     <StyledHero>
       <Search />
     </StyledHero>
+    <Biome />
   </>
 );
 

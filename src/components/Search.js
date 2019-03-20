@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Autocomplete from 'react-autocomplete';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
-import countries from '../static/countries';
 
 const StyledInput = styled.input`
   width: 360px;
@@ -36,23 +35,22 @@ class Search extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { setCountryName, history } = this.props;
+    const { setLand, landsList, history } = this.props;
     const { value } = this.state;
-    const items = Object.values(countries);
-
-    if (items.includes(value)) {
-      setCountryName(value);
-      history.push('/result');
+    if (landsList.includes(value)) {
+      setLand(value);
+      history.push('/biomes');
     }
   };
 
   render = () => {
+    const { landsList } = this.props;
     const { value } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="control has-icons-right">
           <Autocomplete
-            items={Object.values(countries)}
+            items={landsList}
             getItemValue={item => item}
             value={value}
             onChange={this.handleChange}
@@ -89,4 +87,4 @@ class Search extends React.Component {
   };
 }
 
-export default withContext('setCountryName', 'countryName')(withRouter(Search));
+export default withContext('setLand', 'landsList')(withRouter(Search));

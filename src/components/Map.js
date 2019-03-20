@@ -5,14 +5,19 @@ import {
   Geographies,
   Geography
 } from 'react-simple-maps';
-import topology from '../static/world-50m';
+import { withRouter } from 'react-router-dom';
 import { withContext } from '../Provider';
+import topology from '../static/topo-continent';
 
-const Map = ({ setCountryName }) => {
+const Map = ({ setLand, landsList, history }) => {
   const onCountryClick = geography => {
-    setCountryName(geography.properties.NAME);
+    const { continent } = geography.properties;
+    setLand(continent);
+    if (landsList.includes(continent)) {
+      setLand(continent);
+      history.push('/biomes');
+    }
   };
-
   return (
     <ComposableMap
       projectionConfig={{ scale: 205 }}
@@ -23,41 +28,38 @@ const Map = ({ setCountryName }) => {
         height: 'auto'
       }}
     >
-      <ZoomableGroup center={[0, 20]} zoom={1}>
+      <ZoomableGroup center={[0, 20]} zoom={1} disablePanning>
         <Geographies geography={topology}>
           {(geographies, projection) =>
-            geographies.map(
-              (geography, i) =>
-                geography.id !== '010' && (
-                  <Geography
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={i}
-                    geography={geography}
-                    projection={projection}
-                    style={{
-                      default: {
-                        fill: '#ECEFF1',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      },
-                      hover: {
-                        fill: '#CFD8DC',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      },
-                      pressed: {
-                        fill: '#FF5722',
-                        stroke: '#607D8B',
-                        strokeWidth: 0.75,
-                        outline: 'none'
-                      }
-                    }}
-                    onClick={onCountryClick}
-                  />
-                )
-            )
+            geographies.map((geography, id) => (
+              <Geography
+                // eslint-disable-next-line react/no-array-index-key
+                key={id}
+                geography={geography}
+                projection={projection}
+                style={{
+                  default: {
+                    fill: '#ECEFF1',
+                    stroke: '#607D8B',
+                    strokeWidth: 0.75,
+                    outline: 'none'
+                  },
+                  hover: {
+                    fill: '#CFD8DC',
+                    stroke: '#607D8B',
+                    strokeWidth: 0.75,
+                    outline: 'none'
+                  },
+                  pressed: {
+                    fill: '#FF5722',
+                    stroke: '#607D8B',
+                    strokeWidth: 0.75,
+                    outline: 'none'
+                  }
+                }}
+                onClick={onCountryClick}
+              />
+            ))
           }
         </Geographies>
       </ZoomableGroup>
@@ -65,4 +67,4 @@ const Map = ({ setCountryName }) => {
   );
 };
 
-export default withContext('setCountryName')(Map);
+export default withContext('setLand', 'landsList')(withRouter(Map));

@@ -10,7 +10,7 @@ const StyledHero = styled.div`
   padding: 2rem 0;
 `;
 
-const Result = () => (
+const Biomes = () => (
   <>
     <StyledHero>
       <Search />
@@ -18,4 +18,4 @@ const Result = () => (
   </>
 );
 
-export default Result;
+export default Biomes;

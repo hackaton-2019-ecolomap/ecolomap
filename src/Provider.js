@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import withContextFactory from './lib/withContextFactory';
+import landsList from './static/lands';
 
 const Context = React.createContext({});
 
@@ -8,12 +9,13 @@ export const withContext = withContextFactory(Context);
 
 export default class Provider extends React.Component {
   state = {
-    countryName: null,
-    setCountryName: this.setCountryName.bind(this)
+    land: '',
+    landsList: Object.values(landsList),
+    setLand: this.setLand.bind(this)
   };
 
-  setCountryName(countryName) {
-    this.setState({ countryName });
+  setLand(land) {
+    this.setState({ land });
   }
 
   render = () => {

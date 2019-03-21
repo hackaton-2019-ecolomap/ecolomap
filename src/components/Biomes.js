@@ -4,7 +4,6 @@ import CurrentBiome1 from '../static/png/prairie.png';
 import CurrentBiome2 from '../static/png/foret.png';
 import FutureBiome1 from '../static/png/deforestation.png';
 import FutureBiome2 from '../static/png/erosion.png';
-import Mountain from '../static/svg/montagnes.svg';
 
 const StyledCurrentBiome1 = styled.img`
   position: absolute;
@@ -35,25 +34,17 @@ const StyledFutureBiome2 = styled.img`
   z-index: 1;
 `;
 
-const StyledMountain = styled(Mountain)`
-  position: absolute;
-  bottom: 0;
-`;
-
 const Biome = () => (
-  <>
-    <StyledMountain />
-    <div className="columns is-gapless">
-      <div className="column">
-        <StyledCurrentBiome1 src={CurrentBiome1} alt="first current biome" />
-        <StyledCurrentBiome2 src={CurrentBiome2} alt="second current biome" />
-      </div>
-      <div className="column">
-        <StyledFutureBiome1 src={FutureBiome1} alt="first future biome" />
-        <StyledFutureBiome2 src={FutureBiome2} alt="second future biome" />
-      </div>
+  <div className="columns is-gapless">
+    <div className="column">
+      <StyledCurrentBiome1 src={CurrentBiome1} alt="first current biome" />
+      <StyledCurrentBiome2 src={CurrentBiome2} alt="second current biome" />
     </div>
-  </>
+    <div className="column">
+      <StyledFutureBiome1 src={FutureBiome1} alt="first future biome" />
+      <StyledFutureBiome2 src={FutureBiome2} alt="second future biome" />
+    </div>
+  </div>
 );
 
 export default Biome;

@@ -5,6 +5,7 @@ import Search from '../components/Search';
 import Biomes from '../components/Biomes';
 import Wave from '../components/Wave';
 import Cloud from '../components/Cloud';
+import Mountain from '../components/Mountain';
 import { withContext } from '../Provider';
 import { visible } from '../lib/animation';
 import sleep from '../lib/utils';
@@ -66,6 +67,7 @@ class Biome extends React.Component {
             Cliquez sur les différents éléments pour voir les détails
           </StyledSubtitle>
           <Cloud />
+          <Mountain />
           <Biomes />
           <Wave />
         </PosedVisibleWrapper>

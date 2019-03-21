@@ -8,7 +8,7 @@ const StyledWave = styled.div`
   top: -140px;
   width: 6400px;
   height: 140px;
-  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  animation: wave 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
   transform: translate3d(0, 0, 0);
   z-index: 1;
 

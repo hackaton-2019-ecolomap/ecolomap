@@ -12,8 +12,12 @@ export default class Provider extends React.Component {
     land: '',
     landsList: Object.values(landsList),
     pose: 'end',
+    results: null,
+    causes: null,
     setLand: this.setLand.bind(this),
-    setPose: this.setPose.bind(this)
+    setPose: this.setPose.bind(this),
+    setResults: this.setResults.bind(this),
+    setCauses: this.setCauses.bind(this),
   };
 
   setLand(land) {
@@ -22,6 +26,14 @@ export default class Provider extends React.Component {
 
   setPose(pose) {
     this.setState({ pose });
+  }
+
+  setResults(results) {
+    this.setState({ results });
+  }
+
+  setCauses(causes) {
+    this.setState({ causes });
   }
 
   render = () => {

@@ -23,7 +23,8 @@ const PosedSearchWrapper = posed.div(bottomToTop);
 
 class Home extends React.Component {
   componentDidMount() {
-    const { setPose } = this.props;
+    const { setPose, setCauses } = this.props;
+    setCauses(null);
     setPose('end');
     sleep(500).then(() => setPose('start'));
   }
@@ -51,4 +52,4 @@ class Home extends React.Component {
   };
 }
 
-export default withContext('pose', 'setPose')(Home);
+export default withContext('pose', 'setPose', 'setCauses')(Home);

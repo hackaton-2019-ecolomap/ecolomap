@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
+import axios from 'axios';
 import Search from '../components/Search';
 import Biomes from '../components/Biomes';
 import Wave from '../components/Wave';
@@ -45,14 +46,38 @@ const StyledBackground = styled.div`
 
 const PosedVisibleWrapper = posed.div(visible);
 
-class Biome extends React.Component {
+class Biome extends React.Component {  
+  componentWillMount() {
+    const { land, setResults } = this.props;
+    axios.get(`https://192.168.99.100:8443/categories`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      params: {
+        region: land
+      }
+    }).then(result => setResults(result));
+  }
+
   componentDidMount() {
     const { setPose } = this.props;
     sleep(500).then(() => setPose('start'));
   }
 
   render = () => {
-    const { pose, land } = this.props;
+    const { pose, land, results, setCauses, causes } = this.props;
+    if (results && !causes) {
+      const keys = results.data['hydra:member'].map(elem => Object.keys(elem)[0]);
+      const values = results.data['hydra:member'].map(elem => Object.values(elem)[0]);
+      const merged = values.reduce((obj, value, index) => ({...obj, [keys[index]]: value}), {});
+      const arr = Object.values(merged);
+      const maxValue = Math.max(...arr);
+      const getKey = (obj, val) => Object.keys(obj).find(key => obj[key] === val);
+      const cause = {[getKey(merged, maxValue)]: maxValue};
+      if (maxValue > 0) {
+        setCauses(cause);
+      }
+    }
     return (
       <>
         <PosedVisibleWrapper pose={pose}>
@@ -76,4 +101,4 @@ class Biome extends React.Component {
   };
 }
 
-export default withContext('land', 'pose', 'setPose')(Biome);
+export default withContext('land', 'pose', 'setPose', 'setResults', 'results', 'setCauses', 'causes')(Biome);

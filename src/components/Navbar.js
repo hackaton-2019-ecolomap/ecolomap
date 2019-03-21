@@ -1,24 +1,52 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { isMobile } from 'react-device-detect';
+import LogoMin from '../static/svg/logo_min.svg';
 
-const StyledHeader = styled.nav`
+const StyledNav = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
   height: 3rem;
+  box-shadow: 0 4px 2px -2px #ededed;
 `;
 
-const StyledHelp = styled.a`
-  font-family: 'Comfortaa';
-  font-size: 1.5rem;
+const StyledLink = styled(Link)`
   margin: 0 1rem;
+  span {
+    font-size: 0.8rem;
+  }
+`;
+
+const StyledLogin = styled(StyledLink)`
+  margin-right: ${props => (props.isMobile ? '1rem' : '7rem')}
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #EDEDED;
+`;
+
+const StyledLogoMin = styled(LogoMin)`
+  margin-left: ${props => (props.isMobile ? '1rem' : '7rem')}
+  margin-right: auto;
+  width: 6rem;
 `;
 
 const Navbar = () => (
-  <StyledHeader>
-    <StyledHelp>?</StyledHelp>
-  </StyledHeader>
+  <StyledNav>
+    <StyledLogoMin isMobile={isMobile} />
+    <StyledLink to="/project">
+      <span>Projet</span>
+    </StyledLink>
+    <StyledLink to="/signup">
+      <span>S'inscrire</span>
+    </StyledLink>
+    <StyledLogin to="/login" isMobile={isMobile}>
+      <span>Connexion</span>
+    </StyledLogin>
+  </StyledNav>
 );
 
 export default Navbar;

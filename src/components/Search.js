@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import Autocomplete from 'react-autocomplete';
 import { withRouter } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 import { withContext } from '../Provider';
 import sleep from '../lib/utils';
 
 const StyledInput = styled.input`
-  width: 22rem;
+  width: ${props => (props.isMobile ? '22rem' : '37rem')};
   background-color: #ededed;
   box-shadow: none !important;
-  border: ${props => (props.state ? '1px solid red' : 'none')} !important;
+  border: ${props => (props.state ? '1px solid #ED777B' : 'none')} !important;
   &:hover {
     border: ${props =>
-      props.state ? '1px solid red' : '1px solid #9D9D9C'} !important;
+      props.state ? '1px solid #ED777B' : '1px solid #9D9D9C'} !important;
   }
 `;
 
@@ -83,6 +84,7 @@ class Search extends React.Component {
                 className="input is-rounded"
                 placeholder="Essayez France, Angleterre ou Chine"
                 state={error}
+                isMobile={isMobile}
               />
             )}
           />

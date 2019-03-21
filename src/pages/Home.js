@@ -7,6 +7,7 @@ import Map from '../components/Map';
 import Footer from '../components/Footer';
 import { withContext } from '../Provider';
 import { bottomToTop, invisible } from '../lib/animation';
+import sleep from '../lib/utils';
 
 const StyledHero = styled.div`
   display: flex;
@@ -23,7 +24,8 @@ const PosedSearchWrapper = posed.div(bottomToTop);
 class Home extends React.Component {
   componentDidMount() {
     const { setPose } = this.props;
-    setPose('start');
+    setPose('end');
+    sleep(500).then(() => setPose('start'));
   }
 
   render = () => {

@@ -66,6 +66,16 @@ class Search extends React.Component {
             value={value}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            menuStyle={{
+              borderRadius: '5px',
+              background: 'rgba(255, 255, 255, 0.9)',
+              padding: '2px 0',
+              fontSize: '100%',
+              position: 'fixed',
+              overflow: 'auto',
+              maxHeight: '25%',
+              zIndex: 1
+            }}
             shouldItemRender={(item, inputValue) =>
               item.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
             }
@@ -82,7 +92,7 @@ class Search extends React.Component {
               <StyledInput
                 {...props}
                 className="input is-rounded"
-                placeholder="Essayez France, Angleterre ou Chine"
+                placeholder="Essayez France, Royaume-Uni ou Chine"
                 state={error}
                 isMobile={isMobile}
               />

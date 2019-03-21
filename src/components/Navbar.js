@@ -11,7 +11,9 @@ const StyledNav = styled.nav`
   align-items: center;
   width: 100%;
   height: 3rem;
-  box-shadow: 0 4px 2px -2px #ededed;
+  box-shadow: 0 5px 3px 0px #eaeaea;
+  background-color: white;
+  z-index: 1;
 `;
 
 const StyledLink = styled(Link)`

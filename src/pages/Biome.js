@@ -2,10 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
 import Search from '../components/Search';
-import Biome from '../components/Biome';
+import Biomes from '../components/Biomes';
+import Wave from '../components/Wave';
+import Cloud from '../components/Cloud';
 import { withContext } from '../Provider';
 import { visible } from '../lib/animation';
 import sleep from '../lib/utils';
+
+const StyledTitle = styled.h1`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #9d9d9c;
+`;
+
+const StyledSubtitle = styled.p`
+  position: absolute;
+  width: 100%;
+  margin-top: 3rem;
+  text-align: center;
+  color: #9d9d9c;
+`;
 
 const StyledHero = styled.div`
   display: flex;
@@ -27,14 +44,14 @@ const StyledBackground = styled.div`
 
 const PosedVisibleWrapper = posed.div(visible);
 
-class Biomes extends React.Component {
+class Biome extends React.Component {
   componentDidMount() {
     const { setPose } = this.props;
     sleep(500).then(() => setPose('start'));
   }
 
   render = () => {
-    const { pose } = this.props;
+    const { pose, land } = this.props;
     return (
       <>
         <PosedVisibleWrapper pose={pose}>
@@ -44,11 +61,17 @@ class Biomes extends React.Component {
           <Search />
         </StyledHero>
         <PosedVisibleWrapper pose={pose}>
-          <Biome />
+          <StyledTitle>{land}</StyledTitle>
+          <StyledSubtitle>
+            Cliquez sur les différents éléments pour voir les détails
+          </StyledSubtitle>
+          <Cloud />
+          <Biomes />
+          <Wave />
         </PosedVisibleWrapper>
       </>
     );
   };
 }
 
-export default withContext('pose', 'setPose')(Biomes);
+export default withContext('land', 'pose', 'setPose')(Biome);

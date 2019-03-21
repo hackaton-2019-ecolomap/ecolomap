@@ -30,15 +30,17 @@ const StyledLogin = styled(StyledLink)`
   background-color: #EDEDED;
 `;
 
-const StyledLogoMin = styled(LogoMin)`
+const StyledLogoMin = styled(Link)`
   margin-left: ${props => (props.isMobile ? '1rem' : '7rem')}
   margin-right: auto;
-  width: 6rem;
+  width: 6rem; 
 `;
 
 const Navbar = () => (
   <StyledNav>
-    <StyledLogoMin isMobile={isMobile} />
+    <StyledLogoMin to="/" isMobile={isMobile}>
+      <LogoMin />
+    </StyledLogoMin>
     <StyledLink to="/project">
       <span>Projet</span>
     </StyledLink>

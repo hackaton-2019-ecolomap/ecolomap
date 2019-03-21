@@ -48,7 +48,7 @@ class Search extends React.Component {
     if (landsList.includes(value)) {
       if (location.pathname === '/') setPose('end');
       setLand(value);
-      sleep(500).then(() => history.push('/biomes'));
+      sleep(500).then(() => history.push('/biome'));
     } else if (value) {
       this.setState({ error: true });
     }

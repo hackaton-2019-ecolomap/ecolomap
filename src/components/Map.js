@@ -18,7 +18,7 @@ const Map = ({ setLand, landsList, setPose, history }) => {
     if (landsList.includes(continent)) {
       setPose('end');
       setLand(continent);
-      sleep(500).then(() => history.push('/biomes'));
+      sleep(500).then(() => history.push('/biome'));
     }
   };
   return (

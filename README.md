@@ -1,3 +1,7 @@
+### `yarn`
+
+Make sure to install all dependencies.<br>
+
 ### `yarn start`
 
 Runs the app in the development mode.<br>

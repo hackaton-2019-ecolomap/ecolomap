@@ -43,8 +43,6 @@ class Home extends React.Component {
         </StyledHero>
         <PosedInvisibleWrapper pose={pose}>
           <Map />
-        </PosedInvisibleWrapper>
-        <PosedInvisibleWrapper pose={pose}>
           <Footer />
         </PosedInvisibleWrapper>
       </>
